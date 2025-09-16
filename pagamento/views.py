@@ -7,11 +7,12 @@ from rest_framework import generics
 from .serializers import ReceitaSerializer, DespesaSerializer
 from agendamento.serializers import AgendamentoSerializer
 from PRO.util import filtragem, somar_valores
-
+from django.views.decorators.cache import cache_page
 
 
 
 #Lista serviços de um cliente e quanto ele pagou no total do mês
+@cache_page(60 * 10)
 @api_view(['POST'])
 def ValorMensalCliente(request):
     mes = request.data.get('mes')
@@ -52,6 +53,7 @@ def ValorMensalCliente(request):
 
 
 #Relatório final com despesas, receitas e calculo final
+@cache_page(60 * 10)
 @api_view(['POST'])
 def RelatorioFinalMes(request):
     mes = request.data.get('mes')
@@ -85,7 +87,8 @@ def RelatorioFinalMes(request):
 
 
 
-#Lista de Receita e o total do mes 
+#Lista de Receita e o total do mes
+@cache_page(60 * 10) 
 @api_view(['POST'])
 def ReceitaMensalTotal(request):
     mes = request.data.get('mes')
@@ -175,6 +178,7 @@ def CriarDespesa(request):
 
 
 #lista com as depesas e o total
+@cache_page(60 * 10)
 @api_view(['POST'])
 def DespesaTotalMes(request):
     mes = request.data.get('mes')

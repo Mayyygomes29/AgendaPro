@@ -5,6 +5,7 @@ from .serializers import ProfissionalSerializer
 from rest_framework import generics
 from django.contrib.auth.models import User
 
+
 #Cadastra um novo profissional
 @api_view(['POST'])
 def CadastrarProfissional(request):

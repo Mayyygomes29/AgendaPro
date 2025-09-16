@@ -10,6 +10,7 @@ from rest_framework.permissions import AllowAny
 from django.contrib.auth.models import User
 from PRO.util import filtragem
 from django.db import IntegrityError
+from django.views.decorators.cache import cache_page
 
 #Cadastrar um cliente
 @api_view(['POST'])
@@ -47,6 +48,7 @@ def CadastrarCliente(request):
 
 
 #Lista todos os serviços q o cliente agendou
+@cache_page(60 * 10)
 @api_view(['POST'])
 def ListarTodosOsServico(request, pk):
     try:
@@ -71,6 +73,7 @@ def ListarTodosOsServico(request, pk):
 
 
 #Lista agendamentos futuros do cliente específico
+@cache_page(60 * 10)
 @api_view(['POST'])
 def ListarAgendamentosFuturos(request, pk):
     hoje = date.today() #pega a data de hoje 

@@ -10,8 +10,11 @@ from servico.models import Servico
 from datetime import date, datetime
 from rest_framework import generics
 from PRO.util import filtragem
+from django.views.decorators.cache import cache_page
+
 
 #Lista com todos os agendamentos 
+@cache_page(60 * 10)
 @api_view(['GET'])
 def AgendamentoView(request):
     filtros, ordenacao = filtragem(request)
@@ -26,6 +29,7 @@ def AgendamentoView(request):
 
 
 #Lista todos os agendamentos de um mês especifico
+@cache_page(60 * 10)
 @api_view(['POST'])
 def AgendamentoMes(request, m):
     m=int(m)
@@ -46,6 +50,7 @@ def AgendamentoMes(request, m):
 
 
 #Lista os agendamentos de um dia especifico
+@cache_page(60 * 10)
 @api_view(['POST'])    
 def AgendamentoDia(request):
     hoje = request.data.get('date')
@@ -73,6 +78,7 @@ def AgendamentoDia(request):
 
 
 #Lista o Agendamento do dia
+@cache_page(60 * 10)
 @api_view(['GET'])
 def AgendamentoHoje(request):
     hoje = date.today()
