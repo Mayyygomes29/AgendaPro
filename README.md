@@ -1,4 +1,4 @@
-AgendaPro - Sistema de Agendamento para Saúde e Beleza
+#### AgendaPro - Sistema de Agendamento para Saúde e Beleza
 
 AgendaPro é um sistema de agendamento online para profissionais de beleza e saúde, com funcionalidades de gestão de clientes, profissionais, serviços, agendamentos, controle financeiro e autenticação segura via JWT.
 
